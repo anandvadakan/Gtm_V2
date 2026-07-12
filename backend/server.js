@@ -73,7 +73,7 @@ async function scrapeTwitter(queries) {
       searchTerms: queries.slice(0, 3),
       maxTweets: 20,
       queryType: "Latest",
-    }{ waitSecs: 60 });
+    },{ waitSecs: 60 });
     const { items } = await apify.dataset(run.defaultDatasetId).listItems();
     return items.map(i => ({
       text: i.text || i.fullText || "",
@@ -94,7 +94,7 @@ async function scrapeNews(query) {
     const run = await apify.actor("apify/google-news-scraper").call({
       query,
       maxItems: 20,
-    }{ waitSecs: 60 });
+    },{ waitSecs: 60 });
     const { items } = await apify.dataset(run.defaultDatasetId).listItems();
     return items.map(i => ({
       title: i.title || "",
