@@ -49,7 +49,7 @@ async function scrapeReddit(queries, subreddits) {
       searches,
       maxItems: 60,
       type: "posts",
-    },{ waitSecs: 75 }));
+    },{ waitSecs: 60 }));
     const { items } = await apify.dataset(run.defaultDatasetId).listItems();
     return items.map(i => ({
       title: i.title || "",
@@ -73,7 +73,7 @@ async function scrapeTwitter(queries) {
       searchTerms: queries.slice(0, 3),
       maxTweets: 20,
       queryType: "Latest",
-    }{ waitSecs: 75 }));
+    }{ waitSecs: 60 }));
     const { items } = await apify.dataset(run.defaultDatasetId).listItems();
     return items.map(i => ({
       text: i.text || i.fullText || "",
